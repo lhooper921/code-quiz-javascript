@@ -30,7 +30,7 @@ saveHighScore = (e) => {
 
     const score = {
         score: mostRecentScore,
-        name: initials.value,
+        initials: initials.value,
     };
     // Add each high score to the array
     highScores.push(score);

@@ -12,6 +12,7 @@ function countdownTimer() {
 // What happens when time is up  
     if (t < 1) {
         window.clearInterval(update);
+        
         localStorage.setItem('mostRecentScore', 0);
         return window.location.assign("/end.html");
         }
