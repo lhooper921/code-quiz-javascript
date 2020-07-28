@@ -1,4 +1,4 @@
-const username = document.getElementById('username');
+const initials = document.getElementById('initials');
 const saveScoreBtn = document.getElementById('saveScoreBtn');
 const finalScore = document.getElementById('finalScore');
 const mostRecentScore = localStorage.getItem('mostRecentScore');
@@ -10,10 +10,10 @@ const MAX_HIGH_SCORES = 5;
 // Print most recent score on the page
 finalScore.innerText = mostRecentScore;
 
-// Do not allow user to submit unless username contains text
-function manage(username) {
+// Do not allow user to submit unless initials contains text
+function manage(initials) {
     var bt = document.getElementById('saveScoreBtn');
-    if (username.value != '') {
+    if (initials.value != '') {
         bt.disabled = false;
     }
     else {
@@ -21,7 +21,7 @@ function manage(username) {
         
     }
 }
-manage(username);
+manage(initials);
 
 
 
@@ -30,7 +30,7 @@ saveHighScore = (e) => {
 
     const score = {
         score: mostRecentScore,
-        name: username.value,
+        name: initials.value,
     };
     // Add each high score to the array
     highScores.push(score);

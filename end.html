@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>You completed the quiz!</title>
     <link href="Assets\styles.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css">
 </head>
 <body>
     <div class="container">
+
+
         <div id="end" class="flex-center flex-column">
+            <a class="btn" id= "highScoresBtn" href="/highscores.html">View High Scores</a> 
            <h1 id="finalScore"></h1>
            <form>
                <input 
                type='text'
-               name = 'username'
-               id= 'username'
-               placeholder = 'Username required'
+               name = 'initials'
+               id= 'initials'
+               placeholder = 'initials required'
                onkeyup="manage(this)">
                <button 
                type="submit" 

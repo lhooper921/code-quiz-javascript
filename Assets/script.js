@@ -18,18 +18,20 @@ function countdownTimer() {
 }
 update = setInterval("countdownTimer()", 1000);
 
+// Define const by locating them in the document
 const question = document.getElementById('question');
 const choices = Array.from(document.getElementsByClassName('choice-text'));
 const progressText = document.getElementById('progressText');
 const scoreText = document.getElementById('countdown');
 const progressBarFull = document.getElementById("progressBarFull");
 
+// Define variables
 let currentQuestion = {};
-let acceptingAnswers = false;
-// let score = ;
+let readyForAnswers = false;
 let questionCounter = 0;
-let availableQuestions = [];
+let remainingQuestions = [];
 
+// Define question array
 let questions = [
     {
         question: "Which one of these methods for joining multiple words is NOT allowed in Javascript?",
@@ -57,7 +59,7 @@ let questions = [
         answer: 4
     },
     {
-        question: "Given the array 'var berries = ['Strawberries', 'Blueberries', 'Raspberries', 'Blackberries']' What is the index of Raspberries?",
+        question: "Given the array: berries = [Strawberries, Blueberries, Raspberries, Blackberries]  What is the index of Raspberries?",
         choice1: 3,
         choice2: 4,
         choice3: 0,
@@ -90,23 +92,21 @@ let questions = [
     },
 ];
 
-
+// Scorekeeping
 const MAX_QUESTIONS = 7;
 const TIME_SUBTRACT = -10;
 
-
-
-
 // Reset upon starting
-startGame = () => {
+beginQuiz = () => {
   questionCounter = 0;
 //   score = t;
-  availableQuestions = [...questions];
+  remainingQuestions = [...questions];
   getNewQuestion();
 };
+
 // cycle through all remaining questions
 getNewQuestion = () => {
-  if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+  if (remainingQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
       if (t<1){
         localStorage.setItem('mostRecentScore', 0);
       }else {
@@ -116,32 +116,35 @@ getNewQuestion = () => {
   }
 //   Add to question count
   questionCounter++;
+
 //   Display question number out of total questions
   progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+
 //   Update progress bar
 progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
+
 // randomize questions
-  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-  currentQuestion = availableQuestions[questionIndex];
+  const questionIndex = Math.floor(Math.random() * remainingQuestions.length);
+  currentQuestion = remainingQuestions[questionIndex];
   question.innerText = currentQuestion.question;
 
   choices.forEach(choice => {
     const number = choice.dataset["number"];
     choice.innerText = currentQuestion["choice" + number];
   });
-availableQuestions.splice(questionIndex, 1);
+remainingQuestions.splice(questionIndex, 1);
 
-acceptingAnswers = true;
+readyForAnswers = true;
 };
 // What happens when user clicks an answer
 choices.forEach(choice => {
     choice.addEventListener('click', e => {
-      if(!acceptingAnswers) return;
-      acceptingAnswers = false;
-      const selectedChoice = e.target;
-      const selectedAnswer = selectedChoice.dataset['number'];
+      if(!readyForAnswers) return;
+      readyForAnswers = false;
+      const userChoice = e.target;
+      const selectedAnswer = userChoice.dataset['number'];
 
-// Change class when answer is correct or incorrect
+// Change class when answer is correct or incorrect (change red or yellow)
       let classToApply = 'incorrect';
       if (selectedAnswer == currentQuestion.answer) {
           classToApply = 'correct';
@@ -150,10 +153,11 @@ choices.forEach(choice => {
           decrementTime (TIME_SUBTRACT)
 
       }
-      selectedChoice.parentElement.classList.add(classToApply);
-// remove class after given interval
+      userChoice.parentElement.classList.add(classToApply);
+
+// remove class after given interval so changes do not stay indefinitely
       setTimeout(() => {
-        selectedChoice.parentElement.classList.remove(classToApply);
+        userChoice.parentElement.classList.remove(classToApply);
          getNewQuestion();
       }, 500)
     
@@ -162,15 +166,12 @@ choices.forEach(choice => {
     })
 })
 
-// incrementScore = num => {
-//     score +=num;
-//     scoreText.innerText =score;
-// }
+// Decrease timer 
 decrementTime = num => {
     t +=num;
     countdown.innerText = t;
 }
 
-startGame();
+beginQuiz();
 
 

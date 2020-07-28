@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript Quiz</title>
     <link href="Assets\styles.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css">
     
 </head>
 <body>
@@ -12,9 +14,12 @@
   
 
     <div class="container">
+       
         
         <div id="quiz" class="justify-center flex-column">
+           
             <div id = "hud">
+                <a class="btn" id= "highScoresBtn" href="/highscores.html">View High Scores</a> 
                 <div id = "hud-item">
                     <p ID ="progressText" class = "hud-prefix">
                         Question
@@ -37,7 +42,8 @@
                     </p>
                 </div>
             </div>
-            <h2 id="question">What is the question?</h2>
+            <hr>
+            <h3 id="question">What is the question?</h3>
             <div class="choice-container">
                 <p class="choice-prefix">A</p>
                 <p class="choice-text" data-number="1">Choice 1</p>
