@@ -12,7 +12,7 @@ function countdownTimer() {
 // What happens when time is up  
     if (t < 1) {
         window.clearInterval(update);
-        
+
         localStorage.setItem('mostRecentScore', 0);
         return window.location.assign("/end.html");
         }
@@ -113,7 +113,7 @@ getNewQuestion = () => {
       }else {
       localStorage.setItem('mostRecentScore', t);}
     //go to the end page
-    return window.location.assign("/end.html");
+    return window.location.assign("end.html");
   }
 //   Add to question count
   questionCounter++;
