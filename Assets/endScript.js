@@ -44,7 +44,7 @@ saveHighScore = (e) => {
     // Update with high scores and stringify array
     localStorage.setItem('highScores', JSON.stringify(highScores));
     
-    // Go to home page when finsihed saving
-    window.location.assign(href ='code-quiz-javascript/index.html');;
+    // Go to highscores page when finsihed saving
+    window.location.assign(href ='highscores.html');
   
 };
