@@ -45,6 +45,6 @@ saveHighScore = (e) => {
     localStorage.setItem('highScores', JSON.stringify(highScores));
     
     // Go to home page when finsihed saving
-    window.location.assign('/');
+    window.location.assign(href='index.html');
   
 };
