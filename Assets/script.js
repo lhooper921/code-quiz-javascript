@@ -1,177 +1,176 @@
- 
-
- 
-
-
-
 
 // // Countdown Timer
 // // Timer starting point defined
-// let t = 20;
+let t = 60;
 
-// // Countdown function and writing to the page
-// function countdownTimer() {
-//     t = t -1;
-//     if (t < 20) {
-//         document.getElementById("countdown").innerHTML= "Time remaining: " + t +" seconds" ;
-//     }
-// // What happens when time is up  
-//     if (t < 1) {
-//         window.clearInterval(update);
-//       }
+// Countdown function and writing to the page
+function countdownTimer() {
+    t = t -1;
+    if (t < 60) {
+        document.getElementById("countdown").innerHTML= t +" seconds" ;
+    }
+// What happens when time is up  
+    if (t < 1) {
+        window.clearInterval(update);
+        localStorage.setItem('mostRecentScore', 0);
+        return window.location.assign("/end.html");
+        }
+}
+update = setInterval("countdownTimer()", 1000);
+
+const question = document.getElementById('question');
+const choices = Array.from(document.getElementsByClassName('choice-text'));
+const progressText = document.getElementById('progressText');
+const scoreText = document.getElementById('countdown');
+const progressBarFull = document.getElementById("progressBarFull");
+
+let currentQuestion = {};
+let acceptingAnswers = false;
+// let score = ;
+let questionCounter = 0;
+let availableQuestions = [];
+
+let questions = [
+    {
+        question: "Which one of these methods for joining multiple words is NOT allowed in Javascript?",
+        choice1: "Underscore",
+        choice2: "Lower Camel Case",
+        choice3: "Hyphens",
+        choice4: "Upper Camel Case",
+        answer: 3
+    },
+    {
+        question:
+            "Which function allows you to write or display data directly into the browser console?",
+        choice1: "write.console()",
+        choice2: "console.log()",
+        choice3: "document.consoleLog()",
+        choice4: "None of these",
+        answer: 2
+    },
+    {
+        question: "Which symbol represents logical OR?",
+        choice1: "~~", 
+        choice2:"^^", 
+        choice3:"%%", 
+        choice4:"||", 
+        answer: 4
+    },
+    {
+        question: "Given the array 'var berries = ['Strawberries', 'Blueberries', 'Raspberries', 'Blackberries']' What is the index of Raspberries?",
+        choice1: 3,
+        choice2: 4,
+        choice3: 0,
+        choice4: 2,
+        answer: 4
+    },
+    {
+        question: "Which operator would be used to compare values AND type?",
+        choice1:  "=+",  
+        choice2:"===",
+        choice3:"==!", 
+        choice4:"==", 
+        answer:  2
+    },
+    {
+        question: "Who created the Javascript programming language?",
+        choice1: "James Gosling",
+        choice2: "Brendan Eich",
+        choice3: "Dennis Ritchie",
+        choice4: "Rasmus Lerdorf",
+        answer: 2
+    },
+    {
+        question: "Which built-in method adds one or more elements to the end of an array and returns the new length of the array?",
+        choice1: "put()",
+        choice2: "addToLast()",
+        choice3: "push()",
+        choice4: "endAppend()",
+        answer: 3
+    },
+];
+
+
+const MAX_QUESTIONS = 7;
+const TIME_SUBTRACT = -10;
+
+
+
+
+// Reset upon starting
+startGame = () => {
+  questionCounter = 0;
+//   score = t;
+  availableQuestions = [...questions];
+  getNewQuestion();
+};
+// cycle through all remaining questions
+getNewQuestion = () => {
+  if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+      if (t<1){
+        localStorage.setItem('mostRecentScore', 0);
+      }else {
+      localStorage.setItem('mostRecentScore', t);}
+    //go to the end page
+    return window.location.assign("/end.html");
+  }
+//   Add to question count
+  questionCounter++;
+//   Display question number out of total questions
+  progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+//   Update progress bar
+progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
+// randomize questions
+  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+  currentQuestion = availableQuestions[questionIndex];
+  question.innerText = currentQuestion.question;
+
+  choices.forEach(choice => {
+    const number = choice.dataset["number"];
+    choice.innerText = currentQuestion["choice" + number];
+  });
+availableQuestions.splice(questionIndex, 1);
+
+acceptingAnswers = true;
+};
+// What happens when user clicks an answer
+choices.forEach(choice => {
+    choice.addEventListener('click', e => {
+      if(!acceptingAnswers) return;
+      acceptingAnswers = false;
+      const selectedChoice = e.target;
+      const selectedAnswer = selectedChoice.dataset['number'];
+
+// Change class when answer is correct or incorrect
+      let classToApply = 'incorrect';
+      if (selectedAnswer == currentQuestion.answer) {
+          classToApply = 'correct';
+      }
+       else {
+          decrementTime (TIME_SUBTRACT)
+
+      }
+      selectedChoice.parentElement.classList.add(classToApply);
+// remove class after given interval
+      setTimeout(() => {
+        selectedChoice.parentElement.classList.remove(classToApply);
+         getNewQuestion();
+      }, 500)
+    
+
+     
+    })
+})
+
+// incrementScore = num => {
+//     score +=num;
+//     scoreText.innerText =score;
 // }
-// update = setInterval("countdownTimer()", 1000);
-
-
-
-        
-const quizContent = [
-    {
-      q: "Which function allows you to write or display data directly into the browser console?",
-      a: [
-        "write.console()",
-        "console.log()",
-        "document.consoleLog()"
-      ],
-      correctAnswer: 1
-    },
-    {
-      q: "Which one of these methods for joining multiple words is NOT allowed in Javascript?",
-      a: [
-         "Underscore",
-         "Lower Camel Case",
-         "Hyphens",
-         "Upper Camel Case",
-      ],
-      correctAnswer: 2
-    },
-    {
-      q: "Which symbol represents logical OR?",
-      a: [
-         "~~",
-         "^^",
-         "%%",
-         "||",
-        ],
-      correctAnswer: 3
-    },
-    {
-        q: "Given the array 'var berries = ['Strawberries', 'Blueberries', 'Raspberries', 'Blackberries']' What is the index of Raspberries?",
-        a: [
-           "3",
-           "1",
-           "2",
-           "4",
-          ],
-        correctAnswer: 2
-      },
-      {
-        q: "Which operator would be used to compare values AND type?",
-        a: [
-           "=+",
-           "===",
-           "==!",
-           "==",
-          ],
-        correctAnswer: 1
-      },
-      {
-        q: "Who created the Javascript programming language?",
-        a: [
-           "James Gosling",
-           "Brendan Eich",
-           "Dennis Ritchie",
-           "Rasmus Lerdorf",
-          ],
-        correctAnswer: 1
-      },
-      {
-        q: "Which built-in method adds one or more elements to the end of an array and returns the new length of the array?",
-        a: [
-           "put()",
-           "addToLast()",
-           "push()",
-           "endAppend()",
-          ],
-        correctAnswer: 2
-      },
-  ];
-
-
-function init(){
-// loop through question array 
-const quizElement = document.getElementById('quiz');
-let quizStr=''
-quizContent.forEach(function(question, qIndex){
-    let answerStr = ''
-    const answerOrder = randomRange(question.a.length)
-    // for each question, loop through answer array, 
-    question.a.forEach(function(answer, aIndex){
-        answerStr += `
-        <li style="order: ${answerOrder[aIndex]}">
-         <button type ="submit" 
-         class="btn btn-primary mt-4" 
-         name = "Question - ${qIndex}"
-         data-correct="${question.correctAnswer === aIndex}"
-         >
-          ${answer}
-          </button>
-        
-        </li>
-        `
-    
-})
-// Structure of quiz
-    quizStr += `
-    <form>
-    <h1> ${question.q}</h1>
-    
-    <ul>
-    ${answerStr}
-    </ul>
-
-    <div class ="alert">  </div>
-    </form>
-    `
-})
-// display quiz elements on page
-quizElement.innerHTML = quizStr;
-
-// What happens when buttons are selected
-quizElement.addEventListener('submit', function(e){
-    e.preventDefault()
-    // find selected answer within target question
-    const alert = e.target.querySelector('div.alert')
-    const userInput = e.target.querySelector('button[type=submit]:active')
-    if (userInput.dataset.correct === "true" ){
-        alert.innerHTML =  'You are correct!'
-    }else {
-        alert.innerHTML = 'Wrong answer!'
-    }
-    
-})
-}  
-init()
-
-// Randomize answer order
-
-function random(n){
-    return(Math.floor(Math.random()* n))
+decrementTime = num => {
+    t +=num;
+    countdown.innerText = t;
 }
 
-function randomRange(x) {
-    const arr =[]
-    for (let i=0; i<x; i+=1){
-        arr.push(i)
-    }
-    const randomArr=[]
-    while(arr.length>0){
-        const randomIndex= random(arr.length)
-        const randomNumber = arr[randomIndex]
-        // add the random number to the random array
-        randomArr.push(randomNumber)
-        // remove the item at the random index
-        arr.splice(randomIndex, 1)
-    }
-    return randomArr
-}
+startGame();
+
+
