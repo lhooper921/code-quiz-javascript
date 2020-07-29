@@ -113,7 +113,7 @@ getNewQuestion = () => {
       }else {
       localStorage.setItem('mostRecentScore', t);}
     //go to the end page
-    return window.location.assign('end.html');
+     return window.location.assign('end.html');
   }
 //   Add to question count
   questionCounter++;
