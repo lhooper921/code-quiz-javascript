@@ -93,11 +93,11 @@ p {
     border: .5rem solid rgba(155, 93, 67, 0.25);
     color: white;
     background-color: #efc050;
-    padding: 14px 28px;
+   
     font-size: 16px;
     cursor: pointer;
     text-align: center;
-    margin: 2rem;
+    margin: 1rem;
     margin-bottom: 5rem;
     border-radius: 2rem;
     
@@ -110,7 +110,7 @@ p {
     width: 20rem;
     text-align: center;
     border: 0.1rem solid darkgray;
-    margin-bottom: 1rem;
+    margin: 2rem;
     text-decoration: none;
     color: white;
     background-color: rgba(149, 82, 81, 0.863);
@@ -161,7 +161,8 @@ p {
     width: 100%;
   }
   .correct {
-      background-color: #efc050;;
+      background-color: #efc050;
+      
   }
   .incorrect {
       background-color:rgba(94, 17, 17, 0.863);

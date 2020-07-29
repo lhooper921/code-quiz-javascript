@@ -145,10 +145,16 @@ choices.forEach(choice => {
       const userChoice = e.target;
       const selectedAnswer = userChoice.dataset['number'];
 
+
+    
 // Change class when answer is correct or incorrect (change red or yellow)
-      let classToApply = 'incorrect';
+     
+      let classToApply = 'incorrect'
       if (selectedAnswer == currentQuestion.answer) {
+        
           classToApply = 'correct';
+         
+         
       }
        else {
           decrementTime (TIME_SUBTRACT)
