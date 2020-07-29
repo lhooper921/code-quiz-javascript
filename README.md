@@ -25,7 +25,7 @@ This application contains 7 questions regarding Javascript. When an incorrect an
 
 ### Start Page
 
-![Start Page](https://github.com/lhooper921/code-quiz-javascript/blob/master/Assets/images/startPage.PNG)
+![Start Page](https://github.com/lhooper921/code-quiz-javascript/blob/master/Assets/images/startScreen.PNG)
 
 ### Question Page
 
