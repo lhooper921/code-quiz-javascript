@@ -23,32 +23,21 @@ This application contains 7 questions regarding Javascript. When an incorrect an
 
 ## Screenshots
 
-### Password Generator Functioning
+### Start Page
 
-![Password Generator Functioning](https://github.com/lhooper921/password-generator-javascript/blob/master/Assets/Screenshots/Screenshots/screenshot1.PNG)
+![Start Page](https://github.com/lhooper921/code-quiz-javascript/blob/master/Assets/images/startScreen.PNG)
 
-### Confirm Lowercase
+### Question Page
 
-![Confirm Lowercase](https://github.com/lhooper921/password-generator-javascript/blob/master/Assets/Screenshots/Screenshots/screenshot2.PNG)
+![Question Page](https://github.com/lhooper921/code-quiz-javascript/blob/master/Assets/images/questionPage.PNG)
 
-### Confirm Uppercase
+### End Page
 
-![Confirm Uppercase](https://github.com/lhooper921/password-generator-javascript/blob/master/Assets/Screenshots/Screenshots/screenshot3.PNG)
+![End Page](https://github.com/lhooper921/code-quiz-javascript/blob/master/Assets/images/endPage.PNG)
 
-### Confirm Numbers
+### High Scores Page
 
-![Confirm Numbers](https://github.com/lhooper921/password-generator-javascript/blob/master/Assets/Screenshots/Screenshots/screenshot4.PNG)
+![High Scores Page](https://github.com/lhooper921/code-quiz-javascript/blob/master/Assets/images/highscorePage.PNG)
 
-### Confirm Symbols
-
-![Confirm Symbols](https://github.com/lhooper921/password-generator-javascript/blob/master/Assets/Screenshots/Screenshots/screenshot5.PNG)
-
-### Password Length Prompt
-
-![Password Length Prompt](https://github.com/lhooper921/password-generator-javascript/blob/master/Assets/Screenshots/Screenshots/screenshot6.PNG)
-
-### Length Confirmation Alert
-
-![Length Alert](https://github.com/lhooper921/password-generator-javascript/blob/master/Assets/Screenshots/Screenshots/screenshot7.PNG)
 
 
